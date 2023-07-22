@@ -8,7 +8,7 @@ This is simple Sea Battle game with Next.js framework, WebSocket, MongoDB databa
 
 ## Features
 - Create a user profile
-- Play Sea Battle game with random users or with friends
+- Play Sea Battle game locally with friend or with another player online
 - Get the game result, get the game score and experience (which allows you to level up)
 - View the game history
 
