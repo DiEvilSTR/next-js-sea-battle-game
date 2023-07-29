@@ -3,12 +3,11 @@
 Next.js Sea Battle game with WebSocket, MongoDB database and Google OAuth authentication.
 
 ## Description
-
 This is simple Sea Battle game with Next.js framework, WebSocket, MongoDB database and Google OAuth authentication.
 
 ## Features
 - Create a user profile
-- Play Sea Battle game locally with friend or with another player online
+- Play Sea Battle game with friend or random player online
 - Get the game result, get the game score and experience (which allows you to level up)
 - View the game history
 

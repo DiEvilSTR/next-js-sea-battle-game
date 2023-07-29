@@ -1,14 +1,14 @@
 import { model, models } from 'mongoose';
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as userIdGeneratorV4 } from 'uuid';
 
-import { Schema } from './baseSchema';
+import { Schema } from './Schema';
 
 const UserSchema = new Schema({
     userId: {
         type: String,
-        default: uuidv4,
-        unique: [true],
-        required: [true]
+        default: userIdGeneratorV4,
+        unique: [true, 'ID already exists'],
+        required: [true, 'ID is required']
     },
     email: {
         type: String,
@@ -22,7 +22,7 @@ const UserSchema = new Schema({
     },
     image: {
         type: String,
-    },
+    }
 });
 
 const User = models.User || model('User', UserSchema);
