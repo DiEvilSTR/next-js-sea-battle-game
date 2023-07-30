@@ -1,30 +1,31 @@
-import { model, models } from 'mongoose';
-import { v4 as userIdGeneratorV4 } from 'uuid';
+import { DataTypes, Sequelize } from 'sequelize';
 
-import { Schema } from './Schema';
+const sequelize = new Sequelize(process.env.POSTGRES_URI, {
+    dialect: 'postgres', // Specify the database dialect (in this case, PostgreSQL)
+});         
 
-const UserSchema = new Schema({
+const User = sequelize.define('User', {
     userId: {
-        type: String,
-        default: userIdGeneratorV4,
-        unique: [true, 'ID already exists'],
-        required: [true, 'ID is required']
+        type: DataTypes.UUID,
+        defaultValue: Sequelize.UUIDV4,
+        primaryKey: true,
     },
     email: {
-        type: String,
-        unique: [true, 'Email already exists'],
-        required: [true, 'Email is required']
+        type: DataTypes.STRING,
+        unique: true,
+        allowNull: false,
     },
     username: {
-        type: String,
-        required: [true, 'Username is required'],
-        match: [/^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/, "Username invalid, it should contain 8-20 alphanumeric letters and be unique!"]
+        type: DataTypes.STRING,
+        unique: true,
+        allowNull: false,
+        validate: {
+        is: /^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/,
+    },
     },
     image: {
-        type: String,
-    }
+        type: DataTypes.STRING,
+    },
 });
-
-const User = models.User || model('User', UserSchema);
 
 export default User;

@@ -14,10 +14,11 @@ This is simple Sea Battle game with Next.js framework, WebSocket, MongoDB databa
 ## Technologies
 - React
 - Next.js framework
-- Socket.io library
-- Mongoose ODM database library
-- MongoDB database
 - OAuth authentication
+- PostgreSQL database
+- Redis database
+- Sequelize ORM
+- Socket.io library
 
 ## Installation
 1. Clone the repository to your local machine.

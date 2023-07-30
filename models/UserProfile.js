@@ -1,31 +1,32 @@
-import { model, models } from 'mongoose';
+import { DataTypes, Sequelize } from 'sequelize';
+import { v4 as userIdGeneratorV4 } from 'uuid';
 
-import { Schema } from './Schema';
-
-const UserProfileSchema = new Schema({
-    gamePlayed: {
-        type: Number,
-        default: 0
-    },
-    gameWon: {
-        type: Number,
-        default: 0
-    },
-    gameLost: {
-        type: Number,
-        default: 0
-    },
-    experience: {
-        type: Number,
-        default: 0,
-    },
-    owner: {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
-        unique: true
-    }
+const sequelize = new Sequelize(process.env.POSTGRES_URI, {
+    dialect: 'postgres', // Specify the database dialect (in this case, PostgreSQL)
 });
 
-const UserProfile = models.UserProfile || model('UserProfile', UserProfileSchema);
+const UserProfile = sequelize.define('UserProfile', {
+    id: {
+        type: DataTypes.UUID,
+        defaultValue: userIdGeneratorV4,
+        primaryKey: true,
+    },
+    gamePlayed: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0,
+    },
+    gameWon: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0,
+    },
+    gameLost: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0,
+    },
+    experience: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0,
+    },
+});
 
 export default UserProfile;
